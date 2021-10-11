@@ -29,10 +29,10 @@ public class MyStepDefs {
     public int WishListTableSize;
 
     @Given("I add {int} different products to my wish list")
-    public void iAddDifferentProductsToMyWishList(int arg0) {
-        if (arg0 > 5)
-            arg0 = 5;
-        for(int i = 0; i < arg0; i++) {
+    public void iAddDifferentProductsToMyWishList(int numProducts) {
+        if (numProducts > 5)
+            numProducts = 5;
+        for(int i = 0; i < numProducts; i++) {
             String url = "https://testscriptdemo.com/?add_to_wishlist=" + idArray[i];
             myDriver.navigateTo(url);
         }
@@ -45,11 +45,11 @@ public class MyStepDefs {
     }
 
     @Then("I find total {int} selected items in my wishlist")
-    public void iFindTotalSelectedItemsInMyWishlist(int arg0) {
-        if (arg0 > 5)
-            arg0 = 5;
+    public void iFindTotalSelectedItemsInMyWishlist(int numItems) {
+        if (numItems > 5)
+            numItems = 5;
         WishListTableSize = myDriver.getWishlistTableSize();
-        assertEquals(arg0, WishListTableSize);
+        assertEquals(numItems, WishListTableSize);
     }
 
     @When("I search for lowest price product")
