@@ -4,9 +4,12 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
 import webFunctions.BaseFunctions;
 import io.cucumber.java.Before;
 import io.cucumber.java.After;
+import webFunctions.CartFunctions;
+import webFunctions.WishlistFunctions;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,14 +17,15 @@ public class MyStepDefs {
 
     @Before
     public void beforeScenario() {
-        myDriver.setUp();
+        driver = myDriver.setUp();
     }
 
     @After
     public void afterScenario() {
-        myDriver.tearDown();
+        myDriver.tearDown(driver);
     }
 
+    public WebDriver driver;
     BaseFunctions myDriver = new BaseFunctions();
     public String[] idArray = {"22", "15", "16", "14", "20"};
     public double lowestPrice = 0.0;
@@ -48,14 +52,16 @@ public class MyStepDefs {
     public void iFindTotalSelectedItemsInMyWishlist(int numItems) {
         if (numItems > 5)
             numItems = 5;
-        WishListTableSize = myDriver.getWishlistTableSize();
+        WishlistFunctions wishListDriver = new WishlistFunctions(driver);
+        WishListTableSize = wishListDriver.getWishlistTableSize();
         assertEquals(numItems, WishListTableSize);
     }
 
     @When("I search for lowest price product")
     public void iSearchForLowestPriceProduct() {
-        for(int j = 0; j < myDriver.getWishlistTableSize(); j++) {
-            double doublePrice = myDriver.getItemPrice(idArray[j]);
+        CartFunctions cartFunctions = new CartFunctions(driver);
+        for(int j = 0; j < WishListTableSize; j++) {
+            double doublePrice = cartFunctions.getItemPrice(idArray[j]);
             if(lowestPrice == 0.0 || doublePrice < lowestPrice) {
                 lowestPrice = doublePrice;
                 lowestPriceId = idArray[j];
@@ -71,9 +77,10 @@ public class MyStepDefs {
 
     @Then("I am able to verify the item in my cart")
     public void iAmAbleToVerifyTheItemInMyCart() {
+        CartFunctions cartFunctions = new CartFunctions(driver);
         String url = "https://testscriptdemo.com/?page_id=299";
         myDriver.navigateTo(url);
-        assertEquals(1, myDriver.getCartSize());
-        assertEquals(lowestPrice, myDriver.getCartProductCost());
+        assertEquals(1, cartFunctions.getCartSize());
+        assertEquals(lowestPrice, cartFunctions.getCartProductCost());
     }
 }
