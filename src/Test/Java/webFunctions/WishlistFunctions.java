@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class WishlistFunctions extends BaseFunctions {
+
     By wishListTable = By.xpath("//table/tbody/tr");
     private final WebDriver driver;
     private final String[] idArray = {"22", "15", "16", "14", "20"};
@@ -16,7 +17,6 @@ public class WishlistFunctions extends BaseFunctions {
     public WishlistFunctions(WebDriver driver) {
         super(driver);
         this.driver = driver;
-
     }
 
     public void addToWishlist(int numProducts) {
