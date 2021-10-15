@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseFunctions {
 
-    public WebDriver driver;
+    private WebDriver driver;
     public BaseFunctions(WebDriver driver) {
         this.driver = driver;
     }
