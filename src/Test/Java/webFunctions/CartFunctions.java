@@ -5,8 +5,8 @@ import org.openqa.selenium.WebDriver;
 
 public class CartFunctions extends BaseFunctions {
 
-    By cartTable = By.cssSelector(".cart");
-    By productCost = By.cssSelector(".product-price bdi");
+    final By cartTable = By.cssSelector(".cart");
+    final By productCost = By.cssSelector(".product-price bdi");
     private final WebDriver driver;
     private double lowestPrice = -1.0;
     private String lowestPriceId;

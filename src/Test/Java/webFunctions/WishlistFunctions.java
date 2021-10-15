@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class WishlistFunctions extends BaseFunctions {
 
-    By wishListTable = By.xpath("//table/tbody/tr");
+    final By wishListTable = By.xpath("//table/tbody/tr");
     private final WebDriver driver;
     private final String[] idArray = {"22", "15", "16", "14", "20"};
     private int WishlistTableSize = -1;
