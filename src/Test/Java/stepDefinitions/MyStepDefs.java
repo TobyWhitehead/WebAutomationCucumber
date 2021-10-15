@@ -17,16 +17,17 @@ public class MyStepDefs {
 
     @Before
     public void beforeScenario() {
+        BaseFunctions myDriver = new BaseFunctions(driver);
         driver = myDriver.setUp();
     }
 
     @After
     public void afterScenario() {
+        BaseFunctions myDriver = new BaseFunctions(driver);
         myDriver.tearDown(driver);
     }
 
     public WebDriver driver;
-    BaseFunctions myDriver = new BaseFunctions();
     public String[] idArray = {"22", "15", "16", "14", "20"};
     public double lowestPrice = 0.0;
     public String lowestPriceId;
@@ -34,6 +35,7 @@ public class MyStepDefs {
 
     @Given("I add {int} different products to my wish list")
     public void iAddDifferentProductsToMyWishList(int numProducts) {
+        BaseFunctions myDriver = new BaseFunctions(driver);
         if (numProducts > 5)
             numProducts = 5;
         for(int i = 0; i < numProducts; i++) {
@@ -44,6 +46,7 @@ public class MyStepDefs {
 
     @When("I view my wishlist table")
     public void iViewMyWishlistTable() {
+        BaseFunctions myDriver = new BaseFunctions(driver);
         String url = "https://testscriptdemo.com/?page_id=233&wishlist-action";
         myDriver.navigateTo(url);
     }
@@ -52,8 +55,8 @@ public class MyStepDefs {
     public void iFindTotalSelectedItemsInMyWishlist(int numItems) {
         if (numItems > 5)
             numItems = 5;
-        WishlistFunctions wishListDriver = new WishlistFunctions(driver);
-        WishListTableSize = wishListDriver.getWishlistTableSize();
+        WishlistFunctions wishlistDriver = new WishlistFunctions(driver);
+        WishListTableSize = wishlistDriver.getWishlistTableSize();
         assertEquals(numItems, WishListTableSize);
     }
 
@@ -71,6 +74,7 @@ public class MyStepDefs {
 
     @And("I am able to add the lowest price item to my cart")
     public void iAmAbleToAddTheLowestPriceItemToMyCart() {
+        BaseFunctions myDriver = new BaseFunctions(driver);
         String url = "https://testscriptdemo.com/?add-to-cart="+lowestPriceId+"&remove_from_wishlist_after_add_to_cart="+lowestPriceId+"&wishlist_id=5101&wishlist_token=DIQKC0IR0XLH";
         myDriver.navigateTo(url);
     }
@@ -79,7 +83,7 @@ public class MyStepDefs {
     public void iAmAbleToVerifyTheItemInMyCart() {
         CartFunctions cartFunctions = new CartFunctions(driver);
         String url = "https://testscriptdemo.com/?page_id=299";
-        myDriver.navigateTo(url);
+        cartFunctions.navigateTo(url);
         assertEquals(1, cartFunctions.getCartSize());
         assertEquals(lowestPrice, cartFunctions.getCartProductCost());
     }
