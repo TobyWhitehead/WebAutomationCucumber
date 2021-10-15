@@ -51,7 +51,8 @@ public class CartFunctions extends BaseFunctions {
     }
 
     public void addToCart(String id) {
-        String url = "https://testscriptdemo.com/?add-to-cart="+id+"&remove_from_wishlist_after_add_to_cart="+id+"&wishlist_id=5101&wishlist_token=DIQKC0IR0XLH";
+        String url = "https://testscriptdemo.com/?add-to-cart="+id+"&remove_from_wishlist_after_add_to_cart="+id
+                +"&wishlist_id=5101&wishlist_token=DIQKC0IR0XLH";
         navigateTo(url);
     }
 
