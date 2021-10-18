@@ -1,0 +1,6 @@
+projectKey=WebAutomationCucumber
+serverUrl=http://localhost:9000
+serverVersion=9.1.0.47736
+dashboardUrl=http://localhost:9000/dashboard?id=WebAutomationCucumber
+ceTaskId=AXyFN_XWUj94227sEUQl
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXyFN_XWUj94227sEUQl

@@ -1,0 +1,5 @@
+webFunctions\BaseFunctions.class
+webFunctions\WishlistFunctions.class
+stepDefinitions\TestRunner.class
+webFunctions\CartFunctions.class
+stepDefinitions\MyStepDefs.class
